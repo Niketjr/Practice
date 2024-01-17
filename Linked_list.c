@@ -55,7 +55,38 @@ void linsert(int val){
     
 }
 
-void delete(){
+void fdelete(){
+    struct node* p;
+    p = (struct node*)malloc(sizeof(struct node));
+    p = head;
+    head = head->next;
+    free(p);
+}
+
+void ldelete(){
+    struct node*p, *p1;
+    p = (struct node*)malloc(sizeof(struct node));
+    p = head;
+    while(p->next!=NULL){
+        p1 = p;
+        p = p->next;
+    }
+    p1->next = NULL;
+    free(p);
+}
+
+void delete(int pos){
+    struct node *p, *p1;
+    p = (struct node*)malloc(sizeof(struct node));
+    p = head;
+    
+    for(int i=0;i<pos-1;i++){
+        p = p->next;
+    }
+    p1 = p;
+    p = p->next;
+    p1->next = p->next;
+    free(p);
     
 }
 
@@ -73,6 +104,9 @@ int main()
     create(A,6);
     insert(7,4);
     linsert(0);
+    fdelete();
+    ldelete();
+    delete(2);
     display(head);
     return 0;
 }
