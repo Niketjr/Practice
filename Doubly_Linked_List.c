@@ -59,12 +59,25 @@ void delete(int pos){
     free(q);
 }
 
+void reverse(Node* p){
+    Node* t;
+    while(p){
+        t = p->next;
+        p->next = p->prev;
+        p->prev = t;
+        p = p->prev;
+        if(p!=NULL && p->next == NULL){
+            head = p;
+        }
+    }
+}
 void display(){
     Node* p = head;
     while(p){
         printf("%d ",p->data);
         p=p->next;
     }
+    printf("\n");
 }
 
 int main()
@@ -73,6 +86,8 @@ int main()
     create(A,6);
     insert(4,3);
     delete(3);
+    display();
+    reverse(head);
     display();
     return 0;
 }
