@@ -21,6 +21,19 @@ void insert(int val){
     H[index] = val;
 }
 
+void search(int num){
+    int key=num%size;
+    if(H[key]==num){
+        printf("%d is at %d\n",num,key);
+    }
+    else{
+        while(H[key]!=num){
+                key=(key+1)%size;
+            }
+            printf("%d is at index %d in HashTable\n",num,key);
+    }
+}
+
 void display(){
     for(int i=0; i<size; i++){
         printf("%d\n",H[i]);
@@ -36,5 +49,6 @@ void main(){
     insert(39);
     insert(70);
     insert(21);
+    search(21);
     display();
 }
